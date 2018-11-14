@@ -129,15 +129,7 @@ wallet2_check_first_tx() {
         echo
 }
 
-
-coin_daemon="zerod"
-daemon_path="/home/youmine/ZeroClassic/src/zerod"
-wallet="wallet.zero"
-datadir="/home/youmine/.zeroclassic2"
-cli="zero-cli"
-cli2="zero-cli -datadir=$datadir"
-
-
+source config.sh
 
 echo "Wallet Swipe tool"
 echo "---------------------------------"
