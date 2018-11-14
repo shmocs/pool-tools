@@ -129,6 +129,25 @@ wallet2_check_first_tx() {
         echo
 }
 
+shield_fee() {
+	echo "$cli2 z_shieldcoinbase $fee_addr $zaddr_for_fee 0.0001 500"
+	$cli2 z_shieldcoinbase $fee_addr $zaddr_for_fee 0.0001 500
+}
+
+collect_fee() {
+	amount=$($cli2 z_getbalance $zaddr_for_fee)
+	amount_minus_fee=$(awk "BEGIN {print $amount - 0.0001}")
+	echo "$cli2 z_sendmany $zaddr_for_fee \"[{\\\"address\\\":\\\"$collect_fee_addr\\\", \\\"amount\\\":$amount_minus_fee}]\""
+	$cli2 z_sendmany $zaddr_for_fee "[{\"address\":\"$collect_fee_addr\", \"amount\":$amount_minus_fee}]"
+}
+
+
+check_op_ids() {
+	$cli2 z_listoperationids executing
+	$cli2 z_listoperationids queued
+}
+
+
 source config.sh
 
 echo "Wallet Swipe tool"
@@ -138,7 +157,7 @@ echo " Cli : $cli"
 echo
 
 prompt="Pick an option:"
-options=("Wallet2 Status" "Start $datadir" "Stop $datadir" "Erase $datadir/$wallet" "Generate new wallet2 t1,t2,t3,z addresses" "Import old t1,t2,t3 privkeys (norescan) into new wallet" "Get new Z address"  "Check first wallet2 tx status")
+options=("Wallet2 Status" "Start $datadir" "Stop $datadir" "Erase $datadir/$wallet" "Generate new wallet2 t1,t2,t3,z addresses" "Import old t1,t2,t3 privkeys (norescan) into new wallet" "Get new Z address"  "Check first wallet2 tx status" "Shield fee from: $fee_addr" "Collect fee from ${zaddr_for_fee:0:10}...${zaddr_for_fee:85:10} to $collect_fee_addr" "Check opids")
 
 PS3="$prompt "
 select opt in "${options[@]}" "Quit"; do
@@ -152,6 +171,9 @@ case $opt in
 	${options[5]}) import_old_addresses_no_rescan;;
 	${options[6]}) wallet2_get_new_z;;
 	${options[7]}) wallet2_check_first_tx;;
+	${options[8]}) shield_fee;;
+	${options[9]}) collect_fee;;
+	${options[10]}) check_op_ids;;
 	"Quit" ) echo "Bye"; break;;
 	*) echo "$opt Invalid option"; continue;;
 esac
