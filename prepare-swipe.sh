@@ -136,7 +136,7 @@ shield_fee() {
 
 collect_fee() {
 	amount=$($cli2 z_getbalance $zaddr_for_fee)
-	amount_minus_fee=$(awk "BEGIN {print $amount - 0.0001}")
+	amount_minus_fee=$(awk "BEGIN {printf(\"%.8f\", $amount - 0.0001)}")
 	echo "$cli2 z_sendmany $zaddr_for_fee \"[{\\\"address\\\":\\\"$collect_fee_addr\\\", \\\"amount\\\":$amount_minus_fee}]\""
 	$cli2 z_sendmany $zaddr_for_fee "[{\"address\":\"$collect_fee_addr\", \"amount\":$amount_minus_fee}]"
 }
