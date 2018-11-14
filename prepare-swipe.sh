@@ -111,22 +111,9 @@ wallet2_get_new_z() {
 # first_tx is the tx of the first block found AFTER the old keys have been imported into the new wallet
 # When this tx is changed from "immature" to "generate" we are safe to make the wallets switch :)
 wallet2_check_first_tx() {
-        set -f                      # avoid globbing (expansion of *).
-        echo    
-        filename="$datadir/old_addresses"
-        while read -r line; do
-                array=(${line//:/ })
-                label=${array[0]}
-		first_tx=${array[1]}
-		
-                if [ $label == "first_tx" ]; then
-                        $cli2 gettransaction $first_tx
-                	echo "======================================================================================="
-                fi
-
-        done < "$filename"
-
-        echo
+	#defined in config.sh
+	$cli2 gettransaction $first_tx
+        echo "======================================================================================="
 }
 
 shield_fee() {
