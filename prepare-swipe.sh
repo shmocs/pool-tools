@@ -83,7 +83,7 @@ _wallet2_generate_addresses() {
 import_old_addresses_no_rescan() {
 	set -f                      # avoid globbing (expansion of *).
 	echo	
-	filename="$datadir/old_addresses"
+	filename="old_addresses"
 	while read -r line; do
 		array=(${line//:/ })
 		label=${array[0]}
