@@ -139,6 +139,13 @@ check_op_ids() {
 }
 
 
+regroup_amount() {
+        amount=$($cli2 z_getbalance $group_addr)
+
+        echo "$cli2 sendtoaddress $group_addr $amount \"\" \"\" true"
+        $cli2 sendtoaddress $group_addr $amount "" "" true
+}
+
 source config.sh
 
 echo "Wallet Swipe tool"
@@ -148,7 +155,7 @@ echo " Cli : $cli"
 echo
 
 prompt="Pick an option:"
-options=("Wallet2 Status" "Start $datadir" "Stop $datadir" "Erase $datadir/$wallet" "Generate new wallet2 t1,t2,t3,z addresses" "Import old t1,t2,t3 privkeys (norescan) into new wallet" "Get new Z address" "Detect wallet2 first tx" "Check first wallet2 tx status" "Shield fee from: $fee_addr" "Collect fee from ${zaddr_for_fee:0:10}...${zaddr_for_fee:85:10} to $collect_fee_addr" "Check opids")
+options=("Wallet2 Status" "Start $datadir" "Stop $datadir" "Erase $datadir/$wallet" "Generate new wallet2 t1,t2,t3,z addresses" "Import old t1,t2,t3 privkeys (norescan) into new wallet" "Get new Z address" "Detect wallet2 first tx" "Check first wallet2 tx status" "Shield fee from: $fee_addr" "Collect fee from ${zaddr_for_fee:0:10}...${zaddr_for_fee:85:10} to $collect_fee_addr" "Check opids" "Regroup amount of $group_addr")
 
 PS3="$prompt "
 select opt in "${options[@]}" "Quit"; do
@@ -166,6 +173,7 @@ case $opt in
 	${options[9]}) shield_fee;;
 	${options[10]}) collect_fee;;
 	${options[11]}) check_op_ids;;
+	${options[12]}) regroup_amount;;
 	"Quit" ) echo "Bye"; break;;
 	*) echo "$opt Invalid option"; continue;;
 esac
