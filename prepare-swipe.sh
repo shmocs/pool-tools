@@ -143,7 +143,7 @@ regroup_amount() {
         amount=$($cli2 z_getbalance $group_addr)
 
         echo "$cli2 sendtoaddress $group_addr $amount \"\" \"\" true"
-        $cli2 sendtoaddress $group_addr $amount "" "" true
+        #$cli2 sendtoaddress $group_addr $amount "" "" true
 }
 
 source config.sh
