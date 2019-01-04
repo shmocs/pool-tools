@@ -105,7 +105,7 @@ import_old_addresses_no_rescan() {
 }
 
 wallet2_get_new_z() {
-	$cli2 z_getnewaddress
+	$cli2 z_getnewaddress $z_type
 }
 
 wallet2_check_txs() {
