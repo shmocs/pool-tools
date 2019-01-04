@@ -121,8 +121,8 @@ wallet2_check_first_tx() {
 }
 
 shield_fee() {
-	echo "$cli2 z_shieldcoinbase $fee_addr $zaddr_for_fee 0.0001 500"
-	$cli2 z_shieldcoinbase $fee_addr $zaddr_for_fee 0.0001 500
+	echo "$cli2 z_shieldcoinbase $fee_addr $zaddr_for_fee 0.0001 1000"
+	$cli2 z_shieldcoinbase $fee_addr $zaddr_for_fee 0.0001 1000
 }
 
 collect_fee() {
