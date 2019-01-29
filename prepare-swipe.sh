@@ -136,6 +136,7 @@ collect_fee() {
 check_op_ids() {
 	$cli2 z_listoperationids executing
 	$cli2 z_listoperationids queued
+	$cli2 z_listoperationids failed
 }
 
 
