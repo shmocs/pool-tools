@@ -51,6 +51,16 @@ wallet2_erase() {
 	e "\n"
 }
 
+wallet2_generate_addresses() {
+	echo "Generating new addresses ..."
+	for a in {1..1000}
+       	do
+               t1=$($cli2 getnewaddress)
+               t1_priv=$($cli2 dumpprivkey $t1)
+               echo "$t1_priv:$t1" >> $datadir/new_addresses
+       	done
+}
+
 _wallet2_generate_addresses() {
         echo "Generating new addresses ..."
 #	for a in {1..3}
