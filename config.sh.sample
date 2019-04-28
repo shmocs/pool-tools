@@ -1,0 +1,15 @@
+coin_daemon="snowgemd"
+daemon_path="/home/[user]/snowgem-wallet/src/snowgemd"
+wallet="wallet.dat"
+datadir="/home/[user]/.snowgem2"
+cli="snowgem-cli"
+cli2="snowgem-cli -datadir=$datadir"
+z_type="sapling"
+
+first_tx="4feea90be4c6eb02ff3c708883e922bfaaf3fb500122703649095be0094d5e73"
+
+fee_addr="s1QkFpmq35wnjzYXmf8CVU8ehBEr7xabpzt"
+zaddr_for_fee="zs1z40ga0z5z20mvmr73wjjcx440kdxlls6d6a877sjme0w60v0r49sr23xsxgv7wmvdvkasxhvdud"
+collect_fee_addr="s1gokPRErKaKQb8cJn9Y3UG2BvfpHv22BaC"
+
+group_addr="s1gokPRErKaKQb8cJn9Y3UG2BvfpHv22BaC"
