@@ -126,7 +126,7 @@ wallet2_check_txs() {
 # When this tx is changed from "immature" to "generate" we are safe to make the wallets switch :)
 wallet2_check_first_tx() {
 	#defined in config.sh
-	$cli2 gettransaction $first_tx
+	$cli2 gettransaction $first_tx | grep -w confirmations
         echo "======================================================================================="
 }
 
