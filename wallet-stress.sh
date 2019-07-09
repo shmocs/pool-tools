@@ -98,10 +98,11 @@ wallet2_generate10k_addresses() {
 
 send_to_9999_addresses() {
 	#skip random addresses
-	start=$(( ( RANDOM % 52000 )  + 1 ))
+	start=$(( ( RANDOM % 100 )  + 1 ))
+	start=5
 	e "\n Start: $start"
 	#then consider 1000 addresses
-	stop=$(($start+1000))
+	stop=$(($start+100))
 
 	step=0
 	recipients=""
@@ -123,7 +124,8 @@ send_to_9999_addresses() {
 	}\""
 	
 	cmd="$cli2 sendmany \"\" \"{${recipients%?}}\""
-	echo $cmd
+	echo $cmd > cmd.txt
+	echo -e "\nYou can exit this script, then run in this folder: /bin/sh cmd.txt"
 }
 
 regroup_amount() {
